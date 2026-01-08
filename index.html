@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhysioMaster | Medical Physiology Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <div class="logo">🫀 PhysioMaster</div>
+            <div id="global-timer" class="hidden">00:00</div>
+        </header>
+
+        <div id="home-screen" class="screen active">
+            <div class="hero">
+                <h1>Physiology Exam Prep</h1>
+                <p>Master High-Yield concepts with smart spaced repetition.</p>
+            </div>
+
+            <div class="stats-card">
+                <h3>Your Performance</h3>
+                <div class="stat-row">
+                    <span>Best Score:</span> <span id="best-score">0/20</span>
+                </div>
+                <div class="stat-row">
+                    <span>Questions to Re-Learn:</span> <span id="relearn-count">0</span>
+                </div>
+            </div>
+
+            <h3>Select Mode</h3>
+            <div class="mode-grid">
+                <button class="mode-card" onclick="app.startSetup('exam')">
+                    <span class="icon">⚡</span>
+                    <h4>High-Yield Exam</h4>
+                    <p>30 Questions • 15 Mins • Weighted</p>
+                </button>
+                <button class="mode-card" onclick="app.startSetup('general')">
+                    <span class="icon">🎲</span>
+                    <h4>General Practice</h4>
+                    <p>15 Questions • Random Mix</p>
+                </button>
+                <button class="mode-card secondary" onclick="app.startRelearn()">
+                    <span class="icon">🧠</span>
+                    <h4>Re-Learn Mode</h4>
+                    <p>Focus on your mistakes</p>
+                </button>
+            </div>
+        </div>
+
+        <div id="chapter-modal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Select Chapter</h3>
+                <div id="chapter-list" class="chapter-grid">
+                    </div>
+                <button class="btn-close" onclick="app.closeModal()">Cancel</button>
+            </div>
+        </div>
+
+        <div id="quiz-screen" class="screen hidden">
+            <div class="quiz-header">
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <span id="q-tracker">Q 1/30</span>
+            </div>
+
+            <div class="question-card" id="question-container">
+                <div class="badges" id="q-badges">
+                    <span class="badge high-yield">High Yield</span>
+                </div>
+                <h2 id="q-text">Question text goes here?</h2>
+                <div class="options-grid" id="options-container">
+                    </div>
+            </div>
+
+            <div class="quiz-footer">
+                <button id="btn-next" class="btn-primary" onclick="app.nextQuestion()">Next Question</button>
+            </div>
+        </div>
+
+        <div id="result-screen" class="screen hidden">
+            <div class="result-card">
+                <h2>Quiz Complete!</h2>
+                <div class="score-circle">
+                    <span id="final-score">18</span>
+                    <span class="total">/ 20</span>
+                </div>
+                <p id="feedback-msg">Excellent work!</p>
+                
+                <div class="action-buttons">
+                    <button class="btn-primary" onclick="app.reviewQuiz()">Review Answers</button>
+                    <button class="btn-secondary" onclick="app.retakeQuiz()">Retake Quiz</button>
+                    <button class="btn-text" onclick="app.goHome()">Back to Home</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="review-screen" class="screen hidden">
+            <div class="review-header">
+                <button class="btn-text" onclick="app.showResults()">← Back to Score</button>
+                <h3>Answer Review</h3>
+            </div>
+            <div id="review-list">
+                </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
